@@ -2,7 +2,6 @@ package com.kroll;
 
 public class BankAccount {
     private static int nextAccountNumber = 1;
-
     private int accountNumber;
     private String accountName;
     private double balance;
@@ -10,7 +9,9 @@ public class BankAccount {
         return accountNumber;
     }
     public BankAccount(String accountName, double initialDeposit) {
-        this.accountNumber = nextAccountNumber++;
+        if (initialDeposit < 0) {
+            throw new NegativeAmountException("Initial deposit cannot be negative");
+        }
         this.accountName = accountName;
         this.balance = initialDeposit;
     }
